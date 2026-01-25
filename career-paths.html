@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Paths - Equity Bank Careers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Career Paths Specific Styles */
+    .careerpaths-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .careerpaths-hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      border-radius: var(--eb-border-radius);
+      margin-bottom: 3rem;
+    }
+
+    .careerpaths-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .careerpaths-hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .careerpaths-departments {
+      margin-bottom: 4rem;
+    }
+
+    .careerpaths-dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .careerpaths-dept-card {
+      background: white;
+      border-radius: var(--eb-border-radius);
+      overflow: hidden;
+      box-shadow: var(--eb-shadow);
+      transition: var(--eb-transition);
+    }
+
+    .careerpaths-dept-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .careerpaths-dept-icon {
+      height: 100px;
+      background: var(--eb-primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .careerpaths-dept-content {
+      padding: 2rem;
+    }
+
+    .careerpaths-dept-title {
+      color: var(--eb-primary-blue);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .careerpaths-dept-desc {
+      color: var(--eb-medium-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .careerpaths-dept-roles {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .careerpaths-dept-roles li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .careerpaths-dept-roles li:last-child {
+      border-bottom: none;
+    }
+
+    .careerpaths-role-count {
+      background: var(--eb-light-blue);
+      color: var(--eb-primary-blue);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .careerpaths-journey {
+      background: var(--eb-light-blue);
+      padding: 4rem 2rem;
+      border-radius: var(--eb-border-radius);
+      margin-bottom: 4rem;
+    }
+
+    .careerpaths-journey h2 {
+      text-align: center;
+      color: var(--eb-primary-blue);
+      margin-bottom: 3rem;
+      font-size: 2rem;
+    }
+
+    .careerpaths-timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .careerpaths-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--eb-accent-gold);
+      transform: translateX(-50%);
+    }
+
+    .careerpaths-timeline-item {
+      display: flex;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .careerpaths-timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .careerpaths-timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .careerpaths-timeline-content {
+      flex: 1;
+      padding: 2rem;
+      background: white;
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+      position: relative;
+    }
+
+    .careerpaths-timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      background: var(--eb-accent-gold);
+      border-radius: 50%;
+    }
+
+    .careerpaths-timeline-item:nth-child(odd) .careerpaths-timeline-content::before {
+      right: -30px;
+    }
+
+    .careerpaths-timeline-item:nth-child(even) .careerpaths-timeline-content::before {
+      left: -30px;
+    }
+
+    .careerpaths-timeline-content h3 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .careerpaths-timeline-year {
+      color: var(--eb-accent-gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .careerpaths-timeline-year i {
+      font-size: 1.2rem;
+    }
+
+    .careerpaths-programs {
+      margin-bottom: 4rem;
+    }
+
+    .careerpaths-program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .careerpaths-program-card {
+      background: white;
+      border-radius: var(--eb-border-radius);
+      overflow: hidden;
+      box-shadow: var(--eb-shadow);
+    }
+
+    .careerpaths-program-header {
+      background: var(--eb-primary-blue);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .careerpaths-program-header h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .careerpaths-program-duration {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+
+    .careerpaths-program-content {
+      padding: 2rem;
+    }
+
+    .careerpaths-program-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .careerpaths-program-features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .careerpaths-program-features li i {
+      color: var(--eb-success);
+    }
+
+    .careerpaths-cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--eb-primary-blue) 0%, #a22532 100%);
+      color: white;
+      border-radius: var(--eb-border-radius);
+    }
+
+    .careerpaths-cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .careerpaths-cta-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .careerpaths-timeline::before {
+        left: 20px;
+      }
+
+      .careerpaths-timeline-item {
+        flex-direction: row !important;
+        margin-left: 40px;
+      }
+
+      .careerpaths-timeline-content::before {
+        left: -40px !important;
+        right: auto !important;
+      }
+
+      .careerpaths-hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="eb-header">
+    <div class="eb-header-container">
+      <div class="eb-logo-section">
+        <div class="eb-logo">
+          <div
+            style="background-color: var(--eb-primary-blue); color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; font-size: 1.5rem;">
+            EB</div>
+        </div>
+        <div>
+          <div class="eb-bank-name">Equity Bank</div>
+          <div class="eb-bank-tagline">Building Prosperity Together</div>
+        </div>
+      </div>
+
+      <nav class="eb-main-nav">
+        <ul>
+          <li><a href="index.html">Job Search</a></li>
+          <li><a href="my-jobs.html">My Jobpage</a></li>
+          <li><a href="career-paths.html" class="eb-active">Career Paths</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="benefits.html">Employee Benefits</a></li>
+        </ul>
+      </nav>
+
+      <div class="eb-auth-buttons">
+        <button class="eb-btn eb-btn-signin"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+        <button class="eb-btn eb-btn-register">Create Account</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="careerpaths-hero">
+    <h1>Shape Your Future in Banking</h1>
+    <p>Discover structured career paths, development programs, and growth opportunities designed to help you build a
+      rewarding career in financial services.</p>
+    <button class="eb-btn eb-btn-primary" style="background-color: var(--eb-accent-gold); border: none;"><i
+        class="fas fa-play-circle"></i> Watch Career Journey Stories</button>
+  </section>
+
+  <!-- Main Content -->
+  <main class="careerpaths-container">
+    <!-- Departments Section -->
+    <section class="careerpaths-departments">
+      <h2 class="eb-page-header"
+        style="background: none; color: var(--eb-primary-blue); padding: 0; margin-bottom: 2rem; text-align: left;">
+        Explore Career Departments</h2>
+
+      <div class="careerpaths-dept-grid">
+        <!-- Retail Banking -->
+        <div class="careerpaths-dept-card">
+          <div class="careerpaths-dept-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="careerpaths-dept-content">
+            <h3 class="careerpaths-dept-title">Retail Banking</h3>
+            <p class="careerpaths-dept-desc">Serve individual customers and small businesses with banking products and
+              services. Build relationships and help customers achieve their financial goals.</p>
+
+            <ul class="careerpaths-dept-roles">
+              <li>Teller <span class="careerpaths-role-count">8 openings</span></li>
+              <li>Personal Banker <span class="careerpaths-role-count">12 openings</span></li>
+              <li>Branch Manager <span class="careerpaths-role-count">5 openings</span></li>
+              <li>Wealth Advisor <span class="careerpaths-role-count">3 openings</span></li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">View Opportunities</button>
+          </div>
+        </div>
+
+        <!-- Corporate Banking -->
+        <div class="careerpaths-dept-card">
+          <div class="careerpaths-dept-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="careerpaths-dept-content">
+            <h3 class="careerpaths-dept-title">Corporate Banking</h3>
+            <p class="careerpaths-dept-desc">Work with large corporations and institutions, providing sophisticated
+              financial solutions, credit facilities, and strategic advisory services.</p>
+
+            <ul class="careerpaths-dept-roles">
+              <li>Relationship Manager <span class="careerpaths-role-count">7 openings</span></li>
+              <li>Credit Analyst <span class="careerpaths-role-count">9 openings</span></li>
+              <li>Corporate Advisor <span class="careerpaths-role-count">4 openings</span></li>
+              <li>Trade Finance Specialist <span class="careerpaths-role-count">3 openings</span></li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">View Opportunities</button>
+          </div>
+        </div>
+
+        <!-- Technology & Innovation -->
+        <div class="careerpaths-dept-card">
+          <div class="careerpaths-dept-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <div class="careerpaths-dept-content">
+            <h3 class="careerpaths-dept-title">Technology & Innovation</h3>
+            <p class="careerpaths-dept-desc">Drive digital transformation, develop cutting-edge banking solutions, and
+              protect our digital infrastructure in a rapidly evolving financial landscape.</p>
+
+            <ul class="careerpaths-dept-roles">
+              <li>Software Developer <span class="careerpaths-role-count">15 openings</span></li>
+              <li>IT Security Specialist <span class="careerpaths-role-count">8 openings</span></li>
+              <li>Data Analyst <span class="careerpaths-role-count">6 openings</span></li>
+              <li>Product Manager <span class="careerpaths-role-count">4 openings</span></li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">View Opportunities</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Journey -->
+    <section class="careerpaths-journey">
+      <h2>Typical Career Journey at Equity Bank</h2>
+
+      <div class="careerpaths-timeline">
+        <!-- Year 1-2 -->
+        <div class="careerpaths-timeline-item">
+          <div class="careerpaths-timeline-content">
+            <div class="careerpaths-timeline-year"><i class="fas fa-calendar-alt"></i> Years 1-2</div>
+            <h3>Foundation Building</h3>
+            <p>Complete comprehensive training programs, rotate through different departments, and build fundamental
+              banking skills. Most employees start in entry-level positions like Teller or Junior Analyst.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.2rem;">
+              <li>Comprehensive onboarding program</li>
+              <li>Department rotations</li>
+              <li>Basic certification programs</li>
+              <li>Mentorship assignment</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Year 3-5 -->
+        <div class="careerpaths-timeline-item">
+          <div class="careerpaths-timeline-content">
+            <div class="careerpaths-timeline-year"><i class="fas fa-calendar-alt"></i> Years 3-5</div>
+            <h3>Specialization & Growth</h3>
+            <p>Develop expertise in your chosen field, take on more responsibilities, and contribute to key projects.
+              Many employees move into specialist or supervisory roles during this phase.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.2rem;">
+              <li>Advanced certification programs</li>
+              <li>Project leadership opportunities</li>
+              <li>Cross-functional team participation</li>
+              <li>Performance-based promotions</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Year 6-8 -->
+        <div class="careerpaths-timeline-item">
+          <div class="careerpaths-timeline-content">
+            <div class="careerpaths-timeline-year"><i class="fas fa-calendar-alt"></i> Years 6-8</div>
+            <h3>Leadership Development</h3>
+            <p>Prepare for management positions through leadership training programs, strategic projects, and mentorship
+              of junior staff. This phase focuses on developing strategic thinking and people management skills.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.2rem;">
+              <li>Leadership development program</li>
+              <li>Strategic initiative participation</li>
+              <li>Team management experience</li>
+              <li>Executive mentorship</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Year 8+ -->
+        <div class="careerpaths-timeline-item">
+          <div class="careerpaths-timeline-content">
+            <div class="careerpaths-timeline-year"><i class="fas fa-calendar-alt"></i> Years 8+</div>
+            <h3>Strategic Leadership</h3>
+            <p>Take on executive or senior management roles, drive business strategy, and contribute to organizational
+              direction. Focus on innovation, business development, and talent development.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.2rem;">
+              <li>Executive leadership program</li>
+              <li>Board committee participation</li>
+              <li>Industry thought leadership</li>
+              <li>Succession planning involvement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Programs -->
+    <section class="careerpaths-programs">
+      <h2 class="eb-page-header"
+        style="background: none; color: var(--eb-primary-blue); padding: 0; margin-bottom: 2rem; text-align: left;">
+        Development Programs</h2>
+
+      <div class="careerpaths-program-grid">
+        <!-- Graduate Program -->
+        <div class="careerpaths-program-card">
+          <div class="careerpaths-program-header">
+            <h3>Graduate Development Program</h3>
+            <div class="careerpaths-program-duration">12-18 Months</div>
+          </div>
+          <div class="careerpaths-program-content">
+            <p>A comprehensive program for recent graduates to fast-track their banking career through rotations,
+              training, and mentorship.</p>
+
+            <ul class="careerpaths-program-features">
+              <li><i class="fas fa-check-circle"></i> 4 department rotations</li>
+              <li><i class="fas fa-check-circle"></i> Executive mentorship</li>
+              <li><i class="fas fa-check-circle"></i> Professional certifications</li>
+              <li><i class="fas fa-check-circle"></i> International exposure opportunities</li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">Learn More & Apply</button>
+          </div>
+        </div>
+
+        <!-- Leadership Program -->
+        <div class="careerpaths-program-card">
+          <div class="careerpaths-program-header">
+            <h3>Emerging Leaders Program</h3>
+            <div class="careerpaths-program-duration">24 Months</div>
+          </div>
+          <div class="careerpaths-program-content">
+            <p>For high-potential professionals with 3-5 years experience, preparing for management roles through
+              intensive leadership development.</p>
+
+            <ul class="careerpaths-program-features">
+              <li><i class="fas fa-check-circle"></i> Leadership assessments</li>
+              <li><i class="fas fa-check-circle"></i> Strategic project assignments</li>
+              <li><i class="fas fa-check-circle"></i> Harvard Business School online courses</li>
+              <li><i class="fas fa-check-circle"></i> International secondments</li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">Learn More & Apply</button>
+          </div>
+        </div>
+
+        <!-- Technical Program -->
+        <div class="careerpaths-program-card">
+          <div class="careerpaths-program-header">
+            <h3>Technical Excellence Program</h3>
+            <div class="careerpaths-program-duration">Ongoing</div>
+          </div>
+          <div class="careerpaths-program-content">
+            <p>Specialized development for technical roles in IT, cybersecurity, data science, and digital banking
+              innovation.</p>
+
+            <ul class="careerpaths-program-features">
+              <li><i class="fas fa-check-circle"></i> Advanced technical certifications</li>
+              <li><i class="fas fa-check-circle"></i> Innovation lab projects</li>
+              <li><i class="fas fa-check-circle"></i> Conference participation</li>
+              <li><i class="fas fa-check-circle"></i> Research & development opportunities</li>
+            </ul>
+
+            <button class="eb-btn eb-btn-primary" style="width: 100%;">Learn More & Apply</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="careerpaths-cta-section">
+      <h2>Start Your Journey With Us</h2>
+      <p>Join thousands of professionals who have built rewarding careers at Equity Bank. Explore opportunities that
+        match your skills and aspirations.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="eb-btn" style="background-color: var(--eb-accent-gold); border: none; padding: 1rem 2rem;"><i
+            class="fas fa-search"></i> Browse All Jobs</button>
+        <button class="eb-btn eb-btn-secondary"
+          style="background-color: transparent; border: 2px solid white; color: white;"><i class="fas fa-download"></i>
+          Download Career Guide</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="eb-footer">
+    <div class="eb-footer-container">
+      <div class="eb-footer-section">
+        <h3>Career Development</h3>
+        <ul>
+          <li><a href="#">Training Programs</a></li>
+          <li><a href="#">Mentorship</a></li>
+          <li><a href="#">Certifications</a></li>
+          <li><a href="#">Skill Development</a></li>
+          <li><a href="#">Career Coaching</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Learning Resources</h3>
+        <ul>
+          <li><a href="#">E-Learning Portal</a></li>
+          <li><a href="#">Industry Research</a></li>
+          <li><a href="#">Webinars</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Knowledge Library</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Career Paths</h3>
+        <ul>
+          <li><a href="#">Retail Banking</a></li>
+          <li><a href="#">Corporate Banking</a></li>
+          <li><a href="#">Technology</a></li>
+          <li><a href="#">Finance & Risk</a></li>
+          <li><a href="#">Leadership Tracks</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Success Stories</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-play-circle"></i> Employee Journeys</a></li>
+          <li><a href="#"><i class="fas fa-newspaper"></i> Career Spotlights</a></li>
+          <li><a href="#"><i class="fas fa-graduation-cap"></i> Alumni Network</a></li>
+          <li><a href="#"><i class="fas fa-share-alt"></i> Share Your Story</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="eb-footer-bottom">
+      <p>© 2023 Equity Bank Limited. All Rights Reserved. | Privacy Policy | Terms of Use</p>
+      <p style="margin-top: 0.5rem;">Building careers that shape Africa's financial future</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Department card interactions
+      const deptCards = document.querySelectorAll('.careerpaths-dept-card');
+      deptCards.forEach(card => {
+        const viewBtn = card.querySelector('button');
+        viewBtn.addEventListener('click', function () {
+          const deptTitle = card.querySelector('.careerpaths-dept-title').textContent;
+          alert(`Redirecting to ${deptTitle} opportunities...`);
+        });
+      });
+
+      // Program card interactions
+      const programCards = document.querySelectorAll('.careerpaths-program-card');
+      programCards.forEach(card => {
+        const learnBtn = card.querySelector('button');
+        learnBtn.addEventListener('click', function () {
+          const programTitle = card.querySelector('h3').textContent;
+          alert(`Loading details for: ${programTitle}`);
+        });
+      });
+
+      // CTA buttons
+      const ctaButtons = document.querySelectorAll('.careerpaths-cta-section button');
+      ctaButtons[0].addEventListener('click', function () {
+        alert('Opening job search...');
+        window.location.href = 'index.html';
+      });
+
+      ctaButtons[1].addEventListener('click', function () {
+        alert('Downloading Equity Bank Career Guide PDF...');
+      });
+    });
+  </script>
+</body>
+
+</html>

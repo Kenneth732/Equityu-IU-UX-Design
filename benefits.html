@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Benefits - Equity Bank Careers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Benefits Specific Styles */
+    .benefits-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .benefits-hero {
+      background: linear-gradient(135deg, var(--eb-primary-blue) 0%, #a22532 100%);
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      border-radius: var(--eb-border-radius);
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefits-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      opacity: 0.1;
+    }
+
+    .benefits-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefits-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .benefits-hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .benefits-overview {
+      margin-bottom: 4rem;
+    }
+
+    .benefits-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .benefits-overview-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+      text-align: center;
+      transition: var(--eb-transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefits-overview-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .benefits-overview-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--eb-primary-blue), var(--eb-accent-gold));
+    }
+
+    .benefits-card-icon {
+      font-size: 3rem;
+      color: var(--eb-primary-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .benefits-overview-card h3 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .benefits-overview-card p {
+      color: var(--eb-medium-gray);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .benefits-card-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    .benefits-stat {
+      text-align: center;
+    }
+
+    .benefits-stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .benefits-stat-label {
+      font-size: 0.9rem;
+      color: var(--eb-medium-gray);
+    }
+
+    .benefits-categories {
+      margin-bottom: 4rem;
+    }
+
+    .benefits-category {
+      margin-bottom: 3rem;
+    }
+
+    .benefits-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--eb-light-blue);
+    }
+
+    .benefits-category-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--eb-primary-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .benefits-category-title {
+      color: var(--eb-primary-blue);
+      font-size: 1.8rem;
+    }
+
+    .benefits-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .benefits-item {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: var(--eb-transition);
+    }
+
+    .benefits-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .benefits-item-icon {
+      font-size: 2rem;
+      color: var(--eb-accent-gold);
+      min-width: 50px;
+    }
+
+    .benefits-item-content h4 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .benefits-item-content p {
+      color: var(--eb-medium-gray);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .benefits-item-details {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .benefits-detail-tag {
+      background: var(--eb-light-blue);
+      color: var(--eb-primary-blue);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .benefits-wellbeing {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 4rem 2rem;
+      border-radius: var(--eb-border-radius);
+      margin-bottom: 4rem;
+    }
+
+    .benefits-wellbeing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .benefits-wellbeing-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+      text-align: center;
+    }
+
+    .benefits-wellbeing-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--eb-light-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      color: var(--eb-primary-blue);
+    }
+
+    .benefits-wellbeing-card h4 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 1rem;
+    }
+
+    .benefits-wellbeing-card p {
+      color: var(--eb-medium-gray);
+      line-height: 1.6;
+    }
+
+    .benefits-comparison {
+      margin-bottom: 4rem;
+    }
+
+    .benefits-comparison-table {
+      background: white;
+      border-radius: var(--eb-border-radius);
+      overflow: hidden;
+      box-shadow: var(--eb-shadow);
+    }
+
+    .benefits-table-header {
+      background: var(--eb-primary-blue);
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .benefits-table-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .benefits-table-rows {
+      padding: 1rem 0;
+    }
+
+    .benefits-table-row {
+      display: flex;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+    }
+
+    .benefits-table-row:last-child {
+      border-bottom: none;
+    }
+
+    .benefits-table-row:nth-child(even) {
+      background: var(--eb-light-blue);
+    }
+
+    .benefits-table-feature {
+      flex: 2;
+      font-weight: 600;
+      color: var(--eb-dark-gray);
+    }
+
+    .benefits-table-value {
+      flex: 1;
+      text-align: center;
+    }
+
+    .benefits-check {
+      color: var(--eb-success);
+      font-size: 1.2rem;
+    }
+
+    .benefits-calculator {
+      background: white;
+      padding: 3rem;
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+      margin-bottom: 4rem;
+    }
+
+    .benefits-calculator h3 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .benefits-calculator-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .benefits-calc-input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .benefits-calc-input label {
+      font-weight: 600;
+      color: var(--eb-dark-gray);
+    }
+
+    .benefits-calc-input input,
+    .benefits-calc-input select {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--eb-border-radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    .benefits-calc-results {
+      background: var(--eb-light-blue);
+      padding: 2rem;
+      border-radius: var(--eb-border-radius);
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .benefits-calc-results.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .benefits-calc-result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .benefits-calc-result-item:last-child {
+      border-bottom: none;
+      font-weight: 600;
+      color: var(--eb-primary-blue);
+      font-size: 1.1rem;
+    }
+
+    .benefits-cta {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--eb-primary-blue) 0%, #a22532 100%);
+      color: white;
+      border-radius: var(--eb-border-radius);
+    }
+
+    .benefits-cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .benefits-cta p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .benefits-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .benefits-table-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+
+      .benefits-table-feature,
+      .benefits-table-value {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="eb-header">
+    <div class="eb-header-container">
+      <div class="eb-logo-section">
+        <div class="eb-logo">
+          <div
+            style="background-color: var(--eb-primary-blue); color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; font-size: 1.5rem;">
+            EB</div>
+        </div>
+        <div>
+          <div class="eb-bank-name">Equity Bank</div>
+          <div class="eb-bank-tagline">Building Prosperity Together</div>
+        </div>
+      </div>
+
+      <nav class="eb-main-nav">
+        <ul>
+          <li><a href="index.html">Job Search</a></li>
+          <li><a href="my-jobs.html">My Jobpage</a></li>
+          <li><a href="career-paths.html">Career Paths</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="benefits.html" class="eb-active">Employee Benefits</a></li>
+        </ul>
+      </nav>
+
+      <div class="eb-auth-buttons">
+        <button class="eb-btn eb-btn-signin"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+        <button class="eb-btn eb-btn-register">Create Account</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="benefits-hero">
+    <div class="benefits-hero-content">
+      <h1>Investing in Our People</h1>
+      <p>At Equity Bank, we believe that our employees are our greatest asset. That's why we offer comprehensive
+        benefits packages designed to support your health, wealth, career growth, and overall wellbeing.</p>
+      <button class="eb-btn"
+        style="background-color: var(--eb-accent-gold); border: none; margin-top: 2rem; padding: 1rem 2.5rem;"><i
+          class="fas fa-calculator"></i> Calculate Your Total Compensation</button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="benefits-container">
+    <!-- Overview -->
+    <section class="benefits-overview">
+      <h2 class="eb-page-header"
+        style="background: none; color: var(--eb-primary-blue); padding: 0; margin-bottom: 2rem; text-align: left;">Why
+        Work With Us</h2>
+
+      <div class="benefits-overview-grid">
+        <div class="benefits-overview-card">
+          <div class="benefits-card-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <h3>Competitive Compensation</h3>
+          <p>We offer salaries that are competitive within the financial industry, plus performance bonuses and profit
+            sharing to reward your contributions.</p>
+          <div class="benefits-card-stats">
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">Top 10%</div>
+              <div class="benefits-stat-label">Industry Pay</div>
+            </div>
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">15-30%</div>
+              <div class="benefits-stat-label">Bonus Potential</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits-overview-card">
+          <div class="benefits-card-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>Health & Wellness</h3>
+          <p>Comprehensive medical, dental, and vision coverage for you and your family, plus wellness programs and
+            mental health support.</p>
+          <div class="benefits-card-stats">
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">100%</div>
+              <div class="benefits-stat-label">Medical Premiums</div>
+            </div>
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">24/7</div>
+              <div class="benefits-stat-label">Health Support</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits-overview-card">
+          <div class="benefits-card-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Career Development</h3>
+          <p>Continuous learning opportunities, tuition reimbursement, professional certifications, and clear career
+            progression paths.</p>
+          <div class="benefits-card-stats">
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">$10K</div>
+              <div class="benefits-stat-label">Tuition Annual</div>
+            </div>
+            <div class="benefits-stat">
+              <div class="benefits-stat-number">50+</div>
+              <div class="benefits-stat-label">Certifications</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Categories -->
+    <section class="benefits-categories">
+      <div class="benefits-category">
+        <div class="benefits-category-header">
+          <div class="benefits-category-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h2 class="benefits-category-title">Financial Benefits</h2>
+        </div>
+
+        <div class="benefits-items-grid">
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-piggy-bank"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Retirement Planning</h4>
+              <p>Generous employer-matched pension scheme with multiple investment options and financial planning
+                services.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">10% Employer Match</span>
+                <span class="benefits-detail-tag">Vesting: Immediate</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Employee Stock Ownership</h4>
+              <p>Participate in our Employee Stock Ownership Plan (ESOP) and share in the bank's growth and success.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">Annual Grants</span>
+                <span class="benefits-detail-tag">Dividend Eligible</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Housing & Mortgage Benefits</h4>
+              <p>Preferential mortgage rates, housing allowances for relocations, and home purchase assistance programs.
+              </p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">2% Below Market</span>
+                <span class="benefits-detail-tag">Relocation Support</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-coins"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Performance Bonuses</h4>
+              <p>Annual performance-based bonuses tied to individual, team, and organizational achievement.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">Up to 30% of Salary</span>
+                <span class="benefits-detail-tag">Quarterly Payouts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="benefits-category">
+        <div class="benefits-category-header">
+          <div class="benefits-category-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h2 class="benefits-category-title">Health & Wellbeing</h2>
+        </div>
+
+        <div class="benefits-items-grid">
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Comprehensive Medical</h4>
+              <p>Full medical coverage including hospitalization, specialist consultations, maternity care, and
+                preventative services.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">Family Coverage</span>
+                <span class="benefits-detail-tag">No Annual Limits</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Mental Health Support</h4>
+              <p>Access to counseling services, stress management programs, and mental health days as part of our
+                holistic wellness approach.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">24/7 Counseling</span>
+                <span class="benefits-detail-tag">Confidential</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-dumbbell"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Fitness & Wellness</h4>
+              <p>Gym membership reimbursements, onsite fitness centers at major locations, and wellness challenges with
+                rewards.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">$600 Annual Allowance</span>
+                <span class="benefits-detail-tag">Onsite Facilities</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-item">
+            <div class="benefits-item-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="benefits-item-content">
+              <h4>Nutrition & Healthy Living</h4>
+              <p>Healthy meal options in our cafeterias, nutrition counseling, and smoking cessation programs.</p>
+              <div class="benefits-item-details">
+                <span class="benefits-detail-tag">Subsidized Meals</span>
+                <span class="benefits-detail-tag">Dietitian Services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work-Life Balance -->
+    <section class="benefits-wellbeing">
+      <h2 class="eb-page-header"
+        style="background: none; color: var(--eb-primary-blue); padding: 0; margin-bottom: 2rem; text-align: center;">
+        Work-Life Balance</h2>
+
+      <div class="benefits-wellbeing-grid">
+        <div class="benefits-wellbeing-card">
+          <div class="benefits-wellbeing-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h4>Flexible Working</h4>
+          <p>Hybrid work models, flexible hours, and remote work options for eligible positions to support your
+            lifestyle needs.</p>
+        </div>
+
+        <div class="benefits-wellbeing-card">
+          <div class="benefits-wellbeing-icon">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
+          <h4>Generous Time Off</h4>
+          <p>25+ days of annual leave, plus public holidays, personal days, and special leave for life events.</p>
+        </div>
+
+        <div class="benefits-wellbeing-card">
+          <div class="benefits-wellbeing-icon">
+            <i class="fas fa-baby"></i>
+          </div>
+          <h4>Family Support</h4>
+          <p>Paid parental leave, childcare assistance, adoption support, and family emergency leave.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Comparison -->
+    <section class="benefits-comparison">
+      <h2 class="eb-page-header"
+        style="background: none; color: var(--eb-primary-blue); padding: 0; margin-bottom: 2rem; text-align: left;">How
+        We Compare</h2>
+
+      <div class="benefits-comparison-table">
+        <div class="benefits-table-header">
+          <h3>Industry Benefits Comparison</h3>
+          <span style="opacity: 0.9;">✓ = Full Benefit | – = Not Offered</span>
+        </div>
+
+        <div class="benefits-table-rows">
+          <div class="benefits-table-row">
+            <div class="benefits-table-feature">Employer Retirement Contribution</div>
+            <div class="benefits-table-value"><span class="benefits-check">✓ 10% Match</span></div>
+            <div class="benefits-table-value">Industry Avg: 5%</div>
+          </div>
+
+          <div class="benefits-table-row">
+            <div class="benefits-table-feature">Annual Leave Days</div>
+            <div class="benefits-table-value"><span class="benefits-check">✓ 25+ Days</span></div>
+            <div class="benefits-table-value">Industry Avg: 20</div>
+          </div>
+
+          <div class="benefits-table-row">
+            <div class="benefits-table-feature">Parental Leave</div>
+            <div class="benefits-table-value"><span class="benefits-check">✓ 16 Weeks Paid</span></div>
+            <div class="benefits-table-value">Industry Avg: 8 Weeks</div>
+          </div>
+
+          <div class="benefits-table-row">
+            <div class="benefits-table-feature">Tuition Reimbursement</div>
+            <div class="benefits-table-value"><span class="benefits-check">✓ $10,000/Year</span></div>
+            <div class="benefits-table-value">Industry Avg: $5,250</div>
+          </div>
+
+          <div class="benefits-table-row">
+            <div class="benefits-table-feature">Health Premium Coverage</div>
+            <div class="benefits-table-value"><span class="benefits-check">✓ 100% Employee</span></div>
+            <div class="benefits-table-value">Industry Avg: 85%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compensation Calculator -->
+    <section class="benefits-calculator">
+      <h3>Total Compensation Calculator</h3>
+
+      <div class="benefits-calculator-form">
+        <div class="benefits-calc-input">
+          <label for="salary">Base Salary ($)</label>
+          <input type="number" id="salary" placeholder="e.g. 75000" min="30000" max="500000">
+        </div>
+
+        <div class="benefits-calc-input">
+          <label for="experience">Years of Experience</label>
+          <select id="experience">
+            <option value="1">0-2 years</option>
+            <option value="1.1">3-5 years</option>
+            <option value="1.2">6-10 years</option>
+            <option value="1.3">11+ years</option>
+          </select>
+        </div>
+
+        <div class="benefits-calc-input">
+          <label for="role">Role Level</label>
+          <select id="role">
+            <option value="1">Entry Level</option>
+            <option value="1.15">Mid Level</option>
+            <option value="1.3">Senior Level</option>
+            <option value="1.5">Executive</option>
+          </select>
+        </div>
+
+        <div class="benefits-calc-input">
+          <label for="location">Location</label>
+          <select id="location">
+            <option value="1">Nairobi</option>
+            <option value="1.05">Regional HQ</option>
+            <option value="1.1">International</option>
+            <option value="0.95">Remote</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="eb-btn eb-btn-primary" id="calculateBtn" style="width: 100%; padding: 1rem;"><i
+          class="fas fa-calculator"></i> Calculate Total Compensation</button>
+
+      <div class="benefits-calc-results" id="calcResults">
+        <h4 style="color: var(--eb-primary-blue); margin-bottom: 1.5rem;">Your Estimated Total Compensation</h4>
+
+        <div class="benefits-calc-result-item">
+          <span>Base Salary</span>
+          <span id="baseSalary">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Performance Bonus (15-30%)</span>
+          <span id="bonus">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Retirement Contributions (10%)</span>
+          <span id="retirement">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Health Benefits Value</span>
+          <span id="health">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Tuition/Development Value</span>
+          <span id="development">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Stock/Equity Value</span>
+          <span id="equity">$0</span>
+        </div>
+
+        <div class="benefits-calc-result-item">
+          <span>Estimated Total Compensation</span>
+          <span id="totalComp">$0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="benefits-cta">
+      <h2>Ready to Experience Our Benefits?</h2>
+      <p>Join a workplace that truly values and invests in its people. Explore opportunities to start your career
+        journey with comprehensive benefits from day one.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="eb-btn" style="background-color: var(--eb-accent-gold); border: none; padding: 1rem 2.5rem;"><i
+            class="fas fa-search"></i> Browse Open Positions</button>
+        <button class="eb-btn eb-btn-secondary"
+          style="background-color: transparent; border: 2px solid white; color: white;"><i class="fas fa-download"></i>
+          Download Benefits Guide</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="eb-footer">
+    <div class="eb-footer-container">
+      <div class="eb-footer-section">
+        <h3>Employee Benefits</h3>
+        <ul>
+          <li><a href="#">Benefits Overview</a></li>
+          <li><a href="#">Health & Wellness</a></li>
+          <li><a href="#">Retirement Planning</a></li>
+          <li><a href="#">Career Development</a></li>
+          <li><a href="#">Work-Life Balance</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Benefits Calculator</a></li>
+          <li><a href="#">Policy Documents</a></li>
+          <li><a href="#">Enrollment Guide</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Benefits Team</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Wellbeing Programs</h3>
+        <ul>
+          <li><a href="#">Mental Health Support</a></li>
+          <li><a href="#">Fitness & Recreation</a></li>
+          <li><a href="#">Nutrition Counseling</a></li>
+          <li><a href="#">Financial Wellness</a></li>
+          <li><a href="#">Employee Assistance</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-comments"></i> Benefits Q&A</a></li>
+          <li><a href="#"><i class="fas fa-calendar-alt"></i> Benefits Webinars</a></li>
+          <li><a href="#"><i class="fas fa-user-friends"></i> Current Employees</a></li>
+          <li><a href="#"><i class="fas fa-question-circle"></i> Benefits Support</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="eb-footer-bottom">
+      <p>© 2023 Equity Bank Limited. All Rights Reserved. | Privacy Policy | Terms of Use</p>
+      <p style="margin-top: 0.5rem;">Investing in our people, building prosperity together</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Compensation Calculator
+      const calculateBtn = document.getElementById('calculateBtn');
+      const calcResults = document.getElementById('calcResults');
+
+      calculateBtn.addEventListener('click', function () {
+        const salary = parseFloat(document.getElementById('salary').value) || 75000;
+        const experience = parseFloat(document.getElementById('experience').value);
+        const role = parseFloat(document.getElementById('role').value);
+        const location = parseFloat(document.getElementById('location').value);
+
+        // Calculate adjusted salary
+        const adjustedSalary = salary * experience * role * location;
+
+        // Calculate components
+        const bonus = adjustedSalary * 0.20; // 20% average bonus
+        const retirement = adjustedSalary * 0.10; // 10% match
+        const health = 15000; // Estimated health benefits value
+        const development = 10000; // Tuition/development value
+        const equity = adjustedSalary * 0.05; // 5% equity value
+
+        const totalComp = adjustedSalary + bonus + retirement + health + development + equity;
+
+        // Update results
+        document.getElementById('baseSalary').textContent = '$' + adjustedSalary.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('bonus').textContent = '$' + bonus.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('retirement').textContent = '$' + retirement.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('health').textContent = '$' + health.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('development').textContent = '$' + development.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('equity').textContent = '$' + equity.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        document.getElementById('totalComp').textContent = '$' + totalComp.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+        // Show results
+        calcResults.classList.add('active');
+      });
+
+      // Benefit item interactions
+      const benefitItems = document.querySelectorAll('.benefits-item');
+      benefitItems.forEach(item => {
+        item.addEventListener('click', function () {
+          const benefitTitle = this.querySelector('h4').textContent;
+          const benefitDetails = this.querySelector('.benefits-item-details').textContent;
+          alert(`Learn more about: ${benefitTitle}\n\nFeatures: ${benefitDetails}`);
+        });
+      });
+
+      // CTA buttons
+      const ctaButtons = document.querySelectorAll('.benefits-cta button');
+      ctaButtons[0].addEventListener('click', function () {
+        window.location.href = 'index.html';
+      });
+
+      ctaButtons[1].addEventListener('click', function () {
+        alert('Downloading Equity Bank Benefits Guide 2023...');
+      });
+    });
+  </script>
+</body>
+
+</html>

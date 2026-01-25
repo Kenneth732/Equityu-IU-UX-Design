@@ -1,0 +1,326 @@
+/* ===== BASE STYLES & VARIABLES ===== */
+:root {
+  --eb-primary-blue: hwb(354 13% 42%);
+  --eb-secondary-blue: #a22532;
+  --eb-accent-gold: #d4af37;
+  --eb-light-blue: #e6f2ff;
+  --eb-light-gray: #f8f9fa;
+  --eb-medium-gray: #6c757d;
+  --eb-dark-gray: #343a40;
+  --eb-white: #ffffff;
+  --eb-success: #28a745;
+  --eb-warning: #ffc107;
+  --eb-error: #dc3545;
+  --eb-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --eb-border-radius: 8px;
+  --eb-transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--eb-dark-gray);
+  background-color: var(--eb-light-gray);
+}
+
+/* ===== SHARED COMPONENTS ===== */
+.eb-header {
+  background-color: var(--eb-white);
+  box-shadow: var(--eb-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.eb-header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eb-logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.eb-logo {
+  height: 50px;
+  width: auto;
+}
+
+.eb-bank-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--eb-primary-blue);
+  letter-spacing: -0.5px;
+}
+
+.eb-bank-tagline {
+  font-size: 0.85rem;
+  color: var(--eb-medium-gray);
+  font-weight: 500;
+}
+
+.eb-main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.eb-main-nav a {
+  text-decoration: none;
+  color: var(--eb-dark-gray);
+  font-weight: 500;
+  padding: 1.5rem 0;
+  position: relative;
+  transition: var(--eb-transition);
+}
+
+.eb-main-nav a:hover,
+.eb-main-nav a.eb-active {
+  color: var(--eb-primary-blue);
+}
+
+.eb-main-nav a.eb-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--eb-accent-gold);
+}
+
+.eb-auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.eb-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--eb-border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--eb-transition);
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.eb-btn-signin {
+  background-color: transparent;
+  color: var(--eb-primary-blue);
+  border: 2px solid var(--eb-primary-blue);
+}
+
+.eb-btn-signin:hover {
+  background-color: var(--eb-light-blue);
+}
+
+.eb-btn-register {
+  background-color: var(--eb-primary-blue);
+  color: var(--eb-white);
+}
+
+.eb-btn-register:hover {
+  background-color: var(--eb-secondary-blue);
+  transform: translateY(-2px);
+}
+
+.eb-btn-primary {
+  background-color: var(--eb-primary-blue);
+  color: var(--eb-white);
+  border: none;
+  padding: 1rem 2.5rem;
+}
+
+.eb-btn-primary:hover {
+  background-color: var(--eb-secondary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 51, 102, 0.15);
+}
+
+.eb-btn-secondary {
+  background-color: transparent;
+  color: var(--eb-primary-blue);
+  border: 1px solid var(--eb-primary-blue);
+}
+
+.eb-btn-secondary:hover {
+  background-color: var(--eb-light-blue);
+}
+
+/* Footer */
+.eb-footer {
+  background-color: var(--eb-primary-blue);
+  color: var(--eb-white);
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 4rem;
+}
+
+.eb-footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.eb-footer-section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--eb-white);
+}
+
+.eb-footer-section ul {
+  list-style: none;
+}
+
+.eb-footer-section ul li {
+  margin-bottom: 0.75rem;
+}
+
+.eb-footer-section ul li a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--eb-transition);
+}
+
+.eb-footer-section ul li a:hover {
+  color: var(--eb-white);
+  padding-left: 0.5rem;
+}
+
+.eb-footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.eb-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.eb-page-header {
+  background: linear-gradient(135deg, var(--eb-primary-blue) 0%, #a22532 100%);
+  color: var(--eb-white);
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.eb-page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.eb-page-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.eb-section {
+  padding: 3rem 0;
+}
+
+.eb-card {
+  background-color: var(--eb-white);
+  border-radius: var(--eb-border-radius);
+  padding: 2rem;
+  box-shadow: var(--eb-shadow);
+  transition: var(--eb-transition);
+}
+
+.eb-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.eb-featured-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background-color: var(--eb-accent-gold);
+  color: var(--eb-primary-blue);
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.eb-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.eb-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.eb-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.eb-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .eb-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .eb-header-container {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .eb-main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .eb-auth-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .eb-grid-2,
+  .eb-grid-3,
+  .eb-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .eb-page-header h1 {
+    font-size: 2.2rem;
+  }
+}

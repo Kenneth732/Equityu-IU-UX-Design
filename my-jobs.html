@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Jobpage - Equity Bank Careers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* My Jobs Page Specific Styles */
+    .myjobs-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .myjobs-tabs {
+      display: flex;
+      border-bottom: 2px solid #eaeaea;
+      margin-bottom: 2rem;
+      gap: 0;
+    }
+
+    .myjobs-tab {
+      padding: 1rem 2rem;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--eb-medium-gray);
+      cursor: pointer;
+      position: relative;
+      transition: var(--eb-transition);
+    }
+
+    .myjobs-tab:hover {
+      color: var(--eb-primary-blue);
+    }
+
+    .myjobs-tab.active {
+      color: var(--eb-primary-blue);
+    }
+
+    .myjobs-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--eb-accent-gold);
+    }
+
+    .myjobs-tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .myjobs-tab-content.active {
+      display: block;
+    }
+
+    .myjobs-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .myjobs-stat-card {
+      background: linear-gradient(135deg, var(--eb-primary-blue) 0%, #a22532 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: var(--eb-border-radius);
+      text-align: center;
+    }
+
+    .myjobs-stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .myjobs-stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .myjobs-section-title {
+      font-size: 1.5rem;
+      color: var(--eb-primary-blue);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .myjobs-section-title i {
+      color: var(--eb-accent-gold);
+    }
+
+    .myjobs-application-card {
+      border-left: 4px solid var(--eb-primary-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .myjobs-application-status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .myjobs-status-submitted {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: var(--eb-success);
+      border: 1px solid rgba(40, 167, 69, 0.3);
+    }
+
+    .myjobs-status-review {
+      background-color: rgba(255, 193, 7, 0.1);
+      color: var(--eb-warning);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+
+    .myjobs-status-interview {
+      background-color: rgba(0, 123, 255, 0.1);
+      color: #007bff;
+      border: 1px solid rgba(0, 123, 255, 0.3);
+    }
+
+    .myjobs-status-offer {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: var(--eb-error);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+    }
+
+    .myjobs-application-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .myjobs-application-title {
+      font-size: 1.3rem;
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .myjobs-application-date {
+      color: var(--eb-medium-gray);
+      font-size: 0.95rem;
+    }
+
+    .myjobs-application-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .myjobs-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--eb-medium-gray);
+      font-size: 0.95rem;
+    }
+
+    .myjobs-meta-item i {
+      color: var(--eb-primary-blue);
+    }
+
+    .myjobs-application-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .myjobs-empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: var(--eb-white);
+      border-radius: var(--eb-border-radius);
+      box-shadow: var(--eb-shadow);
+    }
+
+    .myjobs-empty-icon {
+      font-size: 4rem;
+      color: var(--eb-light-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .myjobs-empty-title {
+      font-size: 1.5rem;
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .myjobs-empty-text {
+      color: var(--eb-medium-gray);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .myjobs-saved-job {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #eee;
+      transition: var(--eb-transition);
+    }
+
+    .myjobs-saved-job:hover {
+      background-color: var(--eb-light-blue);
+    }
+
+    .myjobs-saved-info h4 {
+      color: var(--eb-primary-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .myjobs-saved-meta {
+      display: flex;
+      gap: 1rem;
+      color: var(--eb-medium-gray);
+      font-size: 0.9rem;
+    }
+
+    .myjobs-profile-section {
+      background-color: var(--eb-white);
+      border-radius: var(--eb-border-radius);
+      padding: 2rem;
+      box-shadow: var(--eb-shadow);
+      margin-bottom: 2rem;
+    }
+
+    .myjobs-profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .myjobs-profile-completion {
+      width: 150px;
+      height: 150px;
+      position: relative;
+    }
+
+    .myjobs-completion-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(var(--eb-accent-gold) 75%, #eee 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .myjobs-completion-text {
+      background: white;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .myjobs-completion-percent {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--eb-primary-blue);
+    }
+
+    .myjobs-completion-label {
+      font-size: 0.9rem;
+      color: var(--eb-medium-gray);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="eb-header">
+    <div class="eb-header-container">
+      <div class="eb-logo-section">
+        <div class="eb-logo">
+          <div
+            style="background-color: var(--eb-primary-blue); color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: bold; font-size: 1.5rem;">
+            EB</div>
+        </div>
+        <div>
+          <div class="eb-bank-name">Equity Bank</div>
+          <div class="eb-bank-tagline">Building Prosperity Together</div>
+        </div>
+      </div>
+
+      <nav class="eb-main-nav">
+        <ul>
+          <li><a href="index.html">Job Search</a></li>
+          <li><a href="my-jobs.html" class="eb-active">My Jobpage</a></li>
+          <li><a href="career-paths.html">Career Paths</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="benefits.html">Employee Benefits</a></li>
+        </ul>
+      </nav>
+
+      <div class="eb-auth-buttons">
+        <button class="eb-btn eb-btn-signin"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+        <button class="eb-btn eb-btn-register">Create Account</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="eb-page-header">
+    <h1>My Jobpage</h1>
+    <p>Manage your applications, saved jobs, and professional profile in one place</p>
+  </section>
+
+  <!-- Main Content -->
+  <main class="myjobs-container">
+    <!-- Stats Overview -->
+    <div class="myjobs-stats">
+      <div class="myjobs-stat-card">
+        <div class="myjobs-stat-number">12</div>
+        <div class="myjobs-stat-label">Applications Submitted</div>
+      </div>
+      <div class="myjobs-stat-card">
+        <div class="myjobs-stat-number">8</div>
+        <div class="myjobs-stat-label">Under Review</div>
+      </div>
+      <div class="myjobs-stat-card">
+        <div class="myjobs-stat-number">3</div>
+        <div class="myjobs-stat-label">Interview Scheduled</div>
+      </div>
+      <div class="myjobs-stat-card">
+        <div class="myjobs-stat-number">15</div>
+        <div class="myjobs-stat-label">Saved Jobs</div>
+      </div>
+    </div>
+
+    <!-- Profile Completion -->
+    <div class="myjobs-profile-section">
+      <div class="myjobs-profile-header">
+        <div>
+          <h2 class="myjobs-section-title"><i class="fas fa-user-circle"></i> My Profile</h2>
+          <p>Complete your profile to increase your chances of finding the right opportunity</p>
+        </div>
+        <div class="myjobs-profile-completion">
+          <div class="myjobs-completion-circle">
+            <div class="myjobs-completion-text">
+              <div class="myjobs-completion-percent">75%</div>
+              <div class="myjobs-completion-label">Complete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eb-grid eb-grid-4">
+        <div>
+          <h4><i class="fas fa-check-circle" style="color: var(--eb-success);"></i> Personal Info</h4>
+          <p style="font-size: 0.9rem; color: var(--eb-medium-gray);">100% Complete</p>
+        </div>
+        <div>
+          <h4><i class="fas fa-check-circle" style="color: var(--eb-success);"></i> Education</h4>
+          <p style="font-size: 0.9rem; color: var(--eb-medium-gray);">100% Complete</p>
+        </div>
+        <div>
+          <h4><i class="fas fa-exclamation-circle" style="color: var(--eb-warning);"></i> Work Experience</h4>
+          <p style="font-size: 0.9rem; color: var(--eb-medium-gray);">60% Complete</p>
+        </div>
+        <div>
+          <h4><i class="fas fa-exclamation-circle" style="color: var(--eb-warning);"></i> Skills & Certifications</h4>
+          <p style="font-size: 0.9rem; color: var(--eb-medium-gray);">40% Complete</p>
+        </div>
+      </div>
+
+      <button class="eb-btn eb-btn-primary" style="margin-top: 2rem;"><i class="fas fa-edit"></i> Edit Profile</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="myjobs-tabs">
+      <button class="myjobs-tab active" data-tab="applications">My Applications</button>
+      <button class="myjobs-tab" data-tab="saved">Saved Jobs</button>
+      <button class="myjobs-tab" data-tab="interviews">Interviews</button>
+      <button class="myjobs-tab" data-tab="messages">Messages</button>
+    </div>
+
+    <!-- Applications Tab -->
+    <div id="applications" class="myjobs-tab-content active">
+      <h3 class="myjobs-section-title"><i class="fas fa-file-alt"></i> Recent Applications</h3>
+
+      <div class="eb-card myjobs-application-card">
+        <span class="myjobs-application-status myjobs-status-interview">Interview Scheduled</span>
+        <div class="myjobs-application-info">
+          <div>
+            <h4 class="myjobs-application-title">Senior Financial Analyst</h4>
+            <p class="myjobs-application-date">Applied on September 15, 2023</p>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-eye"></i> View Details</button>
+          </div>
+        </div>
+        <div class="myjobs-application-meta">
+          <div class="myjobs-meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nairobi Headquarters</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-clock"></i>
+            <span>Full Time</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Next: Interview Oct 20, 2023</span>
+          </div>
+        </div>
+        <div class="myjobs-application-actions">
+          <button class="eb-btn eb-btn-secondary"><i class="fas fa-download"></i> Download Application</button>
+          <button class="eb-btn eb-btn-secondary"><i class="fas fa-calendar-check"></i> Reschedule Interview</button>
+        </div>
+      </div>
+
+      <div class="eb-card myjobs-application-card">
+        <span class="myjobs-application-status myjobs-status-review">Under Review</span>
+        <div class="myjobs-application-info">
+          <div>
+            <h4 class="myjobs-application-title">IT Security Specialist</h4>
+            <p class="myjobs-application-date">Applied on September 22, 2023</p>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-eye"></i> View Details</button>
+          </div>
+        </div>
+        <div class="myjobs-application-meta">
+          <div class="myjobs-meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Remote / Nairobi</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-clock"></i>
+            <span>Full Time</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-hourglass-half"></i>
+            <span>Estimated review: 5-7 days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="eb-card myjobs-application-card">
+        <span class="myjobs-application-status myjobs-status-submitted">Application Submitted</span>
+        <div class="myjobs-application-info">
+          <div>
+            <h4 class="myjobs-application-title">Relationship Manager</h4>
+            <p class="myjobs-application-date">Applied on October 1, 2023</p>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-eye"></i> View Details</button>
+          </div>
+        </div>
+        <div class="myjobs-application-meta">
+          <div class="myjobs-meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Kampala, Uganda</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-clock"></i>
+            <span>Full Time</span>
+          </div>
+          <div class="myjobs-meta-item">
+            <i class="fas fa-hourglass-start"></i>
+            <span>Recently submitted</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Jobs Tab -->
+    <div id="saved" class="myjobs-tab-content">
+      <h3 class="myjobs-section-title"><i class="fas fa-bookmark"></i> Saved Opportunities</h3>
+
+      <div class="eb-card">
+        <div class="myjobs-saved-job">
+          <div class="myjobs-saved-info">
+            <h4>Digital Banking Manager</h4>
+            <div class="myjobs-saved-meta">
+              <span><i class="fas fa-building"></i> Innovation Department</span>
+              <span><i class="fas fa-map-marker-alt"></i> Nairobi</span>
+              <span><i class="fas fa-clock"></i> Full Time</span>
+            </div>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-primary">Apply Now</button>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+
+        <div class="myjobs-saved-job">
+          <div class="myjobs-saved-info">
+            <h4>Risk Management Analyst</h4>
+            <div class="myjobs-saved-meta">
+              <span><i class="fas fa-building"></i> Risk Department</span>
+              <span><i class="fas fa-map-marker-alt"></i> Kisumu</span>
+              <span><i class="fas fa-clock"></i> Full Time</span>
+            </div>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-primary">Apply Now</button>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+
+        <div class="myjobs-saved-job">
+          <div class="myjobs-saved-info">
+            <h4>Customer Experience Specialist</h4>
+            <div class="myjobs-saved-meta">
+              <span><i class="fas fa-building"></i> Retail Banking</span>
+              <span><i class="fas fa-map-marker-alt"></i> Mombasa</span>
+              <span><i class="fas fa-clock"></i> Part Time</span>
+            </div>
+          </div>
+          <div>
+            <button class="eb-btn eb-btn-primary">Apply Now</button>
+            <button class="eb-btn eb-btn-secondary"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interviews Tab -->
+    <div id="interviews" class="myjobs-tab-content">
+      <h3 class="myjobs-section-title"><i class="fas fa-calendar-check"></i> Upcoming Interviews</h3>
+
+      <div class="eb-grid eb-grid-2">
+        <div class="eb-card">
+          <h4 style="color: var(--eb-primary-blue); margin-bottom: 1rem;">Senior Financial Analyst</h4>
+          <div class="myjobs-meta-item" style="margin-bottom: 0.5rem;">
+            <i class="fas fa-calendar-day"></i>
+            <span>October 20, 2023</span>
+          </div>
+          <div class="myjobs-meta-item" style="margin-bottom: 0.5rem;">
+            <i class="fas fa-clock"></i>
+            <span>10:00 AM - 11:30 AM (EAT)</span>
+          </div>
+          <div class="myjobs-meta-item" style="margin-bottom: 1.5rem;">
+            <i class="fas fa-video"></i>
+            <span>Virtual Interview - Microsoft Teams</span>
+          </div>
+          <button class="eb-btn eb-btn-primary"><i class="fas fa-video"></i> Join Interview</button>
+          <button class="eb-btn eb-btn-secondary"><i class="fas fa-calendar-times"></i> Reschedule</button>
+        </div>
+
+        <div class="eb-card">
+          <h4 style="color: var(--eb-primary-blue); margin-bottom: 1rem;">IT Security Specialist</h4>
+          <div class="myjobs-meta-item" style="margin-bottom: 0.5rem;">
+            <i class="fas fa-calendar-day"></i>
+            <span>October 25, 2023</span>
+          </div>
+          <div class="myjobs-meta-item" style="margin-bottom: 0.5rem;">
+            <i class="fas fa-clock"></i>
+            <span>2:00 PM - 3:00 PM (EAT)</span>
+          </div>
+          <div class="myjobs-meta-item" style="margin-bottom: 1.5rem;">
+            <i class="fas fa-building"></i>
+            <span>In-person: Nairobi HQ, 3rd Floor</span>
+          </div>
+          <button class="eb-btn eb-btn-primary"><i class="fas fa-directions"></i> Get Directions</button>
+          <button class="eb-btn eb-btn-secondary"><i class="fas fa-calendar-times"></i> Reschedule</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages Tab -->
+    <div id="messages" class="myjobs-tab-content">
+      <div class="myjobs-empty-state">
+        <div class="myjobs-empty-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="myjobs-empty-title">No New Messages</h3>
+        <p class="myjobs-empty-text">When recruiters contact you or there are updates on your applications, you'll see
+          them here.</p>
+        <button class="eb-btn eb-btn-primary"><i class="fas fa-search"></i> Browse Jobs</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="eb-footer">
+    <div class="eb-footer-container">
+      <div class="eb-footer-section">
+        <h3>My Jobpage</h3>
+        <ul>
+          <li><a href="#">Application Status</a></li>
+          <li><a href="#">Interview Preparation</a></li>
+          <li><a href="#">Profile Settings</a></li>
+          <li><a href="#">Document Manager</a></li>
+          <li><a href="#">Privacy Settings</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Application Help</a></li>
+          <li><a href="#">Technical Support</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact HR</a></li>
+          <li><a href="#">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Resume Builder</a></li>
+          <li><a href="#">Interview Tips</a></li>
+          <li><a href="#">Career Advice</a></li>
+          <li><a href="#">Banking Certifications</a></li>
+          <li><a href="#">Skill Development</a></li>
+        </ul>
+      </div>
+
+      <div class="eb-footer-section">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fas fa-envelope"></i> Career Alerts</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="eb-footer-bottom">
+      <p>© 2023 Equity Bank Limited. All Rights Reserved. | Privacy Policy | Terms of Use</p>
+      <p style="margin-top: 0.5rem;">Your career journey is important to us</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.myjobs-tab');
+      const tabContents = document.querySelectorAll('.myjobs-tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+          const targetTab = this.getAttribute('data-tab');
+
+          // Update active tab
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+
+          // Show target content
+          tabContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === targetTab) {
+              content.classList.add('active');
+            }
+          });
+        });
+      });
+
+      // Simulate loading applications
+      const applicationCards = document.querySelectorAll('.myjobs-application-card');
+      applicationCards.forEach(card => {
+        card.addEventListener('click', function (e) {
+          if (!e.target.closest('button')) {
+            const title = this.querySelector('.myjobs-application-title').textContent;
+            alert(`Viewing details for: ${title}`);
+          }
+        });
+      });
+
+      // Profile edit button
+      const editProfileBtn = document.querySelector('.eb-btn-primary');
+      editProfileBtn.addEventListener('click', function () {
+        alert('Opening profile editor...');
+      });
+    });
+  </script>
+</body>
+
+</html>
