@@ -1654,6 +1654,37 @@
         alert('Opening advanced search panel with more filtering options...');
       });
     });
+
+/* ----- mobile menu toggle ----- */
+const mobileToggle = document.querySelector('.mobile-toggle');
+const mobileDrawer = document.getElementById('mobileDrawer');
+
+if (mobileToggle && mobileDrawer) {
+  mobileToggle.addEventListener('click', () => {
+    const isOpen = mobileDrawer.classList.toggle('open');
+    mobileToggle.classList.toggle('open', isOpen);
+    mobileToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // close drawer when a link is clicked
+  mobileDrawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileDrawer.classList.remove('open');
+      mobileToggle.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+// close mobile drawer on resize to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 960) {
+    mobileDrawer?.classList.remove('open');
+    mobileToggle?.classList.remove('open');
+    mobileToggle?.setAttribute('aria-expanded', 'false');
+  }
+});
+    
   </script>
 </body>
 </html>
